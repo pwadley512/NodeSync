@@ -10,15 +10,7 @@ public class LevelSelectScreen {
   public LevelSelectScreen() {
   }
 
-  void redrawBackground() {
-    //fill(0, 0, 0); // Black
-    //rect(0, 0, dispWidth, dispHeight); // Black Border
-    fill(255, 255, 255); // White
-    rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
-  }
-
   GameStateENUM mdraw() {
-    redrawBackground();
     fill(0, 0, 0); 
     textSize(60);
     text("Select level below...", 100, 100);

@@ -24,19 +24,10 @@ public class LogoScreen {
     this.showDelay = showDelay;
   }
 
-  void redrawBackground() {
-    //fill(0, 0, 0); // Black
-    //rect(0, 0, dispWidth, dispHeight); // Black Border
-    fill(255, 255, 255); // White
-    rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
+  GameStateENUM mdraw(int EngineTimer) {
     img = loadImage("uofcenglogo.png");
     image(img, 180, 70);
     fill(0, 0, 0); // Black
-  }
-
-
-  GameStateENUM mdraw(int EngineTimer) {
-    redrawBackground();
     return isLogoDone(EngineTimer);
   }
 

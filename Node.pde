@@ -4,45 +4,35 @@
 // By: Eric Born & Peter Wadley
 
 public class Node {
-  float inner_rotation_radius = 10;
-  float inner_Node_diameter = 8;
-  float inner_Node_color = 255;
-  float inner_Node_rotation_speed = 1;
-  float inner_rotation_degrees;
-  float inner_Node_x;
-  float inner_Node_y ;
-  float inner_Node_spin_dir;
   PVector position;
   PVector velocity;
-  float r, m;
-  float R, G, B;
-  String voltage;
+  float r, radius, m, mass;
+  float Red, Green, Blue;
+  String voltageLabel;
   int radiusInt;
-  
-  static final float sizeNodeS = 30;
-  static final float sizeNodeM = 50;
-  static final float sizeNodeL = 70;
-  static final float sizeNodeXL = 90;
+  String nodeID;
 
-  String NodeID;
-  Node(float x, float y, float r_, float R, float G, float B, String voltage, String NodeID) {
+  public Boolean heldByMouse = false;
+
+
+  Node(float x, float y, float r_, float Red, float Green, float Blue, String voltageLabel, String nodeID) {
     position = new PVector(x, y);
     velocity = PVector.random2D();
-    velocity.mult(5);
-    r = r_;
-    m = r*.1;
-    this.R = R;
-    this.G = G;
-    this.B = B;
-    this.voltage = voltage;
-    this.radiusInt = (int) r;
-    this.NodeID = NodeID;
+    velocity.mult(1);
+    radius = r_;
+    r = radius;
+    mass = radius*.1;
+    m = mass;
+    this.Red = Red;
+    this.Green = Green;
+    this.Blue = Blue;
+    this.voltageLabel = voltageLabel;
+    this.nodeID = nodeID;
   }
 
   void update() {
-   
+
     position.add(velocity);
-    
   }
 
   void checkBoundaryCollision() {
@@ -149,36 +139,31 @@ public class Node {
 
 
   void display() {
-    noStroke();
-    fill(R, G, B);
-    ellipse(position.x, position.y, r*2, r*2);
-    this.inner_Node_x = this.position.x+ this.inner_rotation_radius * cos(this.inner_rotation_degrees);
-    this.inner_Node_y = this.position.y + this.inner_rotation_radius * sin(this.inner_rotation_degrees) + cos(this.inner_rotation_degrees);
-    //this.inner_rotation_degrees -= 0.2;
-    fill(255, 255, 255);
-    //ellipse(this.inner_Node_x, this.inner_Node_y, this.inner_Node_diameter, this.inner_Node_diameter);
-    // Print Voltage
-    fill(255, 255, 255);
-    textSize(15);
-    text(voltage, this.position.x-15, this.position.y-6);
+    strokeWeight(9);
+    stroke(0, 0, 0);
+    fill(127, 0, 0);
+    arc(position.x, position.y, r*2, r*2, -HALF_PI, HALF_PI);
+    fill(0, 127, 0); 
+    arc(position.x, position.y, r*2, r*2, -3*PI/2, -HALF_PI);
 
-    switch(this.radiusInt) {
-      case (30):
-      text("A = 1", this.position.x-20, this.position.y+20);
-      break;
-      case (50):
-      text("A = 2", this.position.x-20, this.position.y+20);      
-      break;     
-      case (70):
-      text("A = 3", this.position.x-20, this.position.y+20);      
-      break; 
-      case (90):
-      text("A = 4", this.position.x-20, this.position.y+20);      
-      break; 
-    default:
-    }
-        fill(0, 0, 0);
-   // text( this.NodeID , this.position.x+(radiusInt), this.position.y+2*(radiusInt));
+    // Show Node Label (A,B etc)
+    //switch(this.radiusInt) {
+    //  case (30):
+    //  text("A = 1", this.position.x-20, this.position.y+20);
+    //  break;
+    //  case (50):
+    //  text("A = 2", this.position.x-20, this.position.y+20);      
+    //  break;     
+    //  case (70):
+    //  text("A = 3", this.position.x-20, this.position.y+20);      
+    //  break; 
+    //  case (90):
+    //  text("A = 4", this.position.x-20, this.position.y+20);      
+    //  break; 
+    //default:
+    //}
+    //    fill(0, 0, 0);
+    //// text( this.NodeID , this.position.x+(radiusInt), this.position.y+2*(radiusInt));
 
 
 

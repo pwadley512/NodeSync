@@ -5,14 +5,10 @@
 // Screen Size
 int dispWidth = 850;
 int dispHeight = 850;
-// MOVE ALL LISTENERS TO THIS FILE
-// Game arena
-int topWallY = 10;
-int bottomWallY = dispHeight-20;
-int leftWallX = 10;
-int rightWallX = dispWidth-20;
+
 
 int EngineTimer = 0;
+// State Variables
 public GameStateENUM currentState;
 LogoScreen mLogoScreen;
 MainMenuScreen mMainMenuScreen;
@@ -23,12 +19,27 @@ CountDownToGame mCountDownToGame;
 GameplayScreen mGameplayScreen;
 PauseScreen mPauseScreen;
 HighScoreScreen mHighScoreScreen;
-Node soloNode; 
+
+// Game arena Variables
+int topWallY = 10;
+int bottomWallY = dispHeight-20;
+int leftWallX = 10;
+int rightWallX = dispWidth-20;
+
+// Listener Variables
+
+int explodeTimerNode1 = 3000;
+int timeLetGoNode1 = MAX_INT;
+int explodeTimerNode2 = 3000;
+int timeLetGoNode2 = MAX_INT;
+
+
 void setup()
 {
   size(850, 850);
-  smooth();
-  frameRate(60);
+  //fullScreen();
+  // smooth();
+  frameRate(200);
   EngineTimer = millis();
   InitHelperObject();
 }
@@ -44,17 +55,21 @@ void InitHelperObject() {
   mGameplayScreen = new GameplayScreen();
   mPauseScreen = new PauseScreen();
   mHighScoreScreen = new HighScoreScreen();
-  soloNode = new Node(200, 200, Node.sizeNodeS, 125, 0, 0, "0.7v", "A");
 }
 
 void draw()
 {
-
-
+  // Refresh Background
+  fill(0, 0, 0); // Black
+  rect(0, 0, dispWidth, dispHeight); // Black Border
+  fill(255, 255, 255); // White
+  rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
+  fill(0, 0, 0); // Black
+  // Refresh Background
+  
   switch(currentState) {
-
   case LOGO:
-    currentState =  mLogoScreen.mdraw(EngineTimer);
+    currentState =  mLogoScreen.mdraw(600);
     break; 
   case MAINMENU:
     currentState = mMainMenuScreen.mdraw();
@@ -79,19 +94,81 @@ void draw()
     mPauseScreen.mdraw();
     break;
   case HIGHSCORE:
-    if (mGameplayScreen.addToHighScore) {
+    if (mGameplayScreen.addToHighScoreList) {
     }
-    currentState =  mHighScoreScreen.mdraw(mGameplayScreen.addToHighScore, mGameplayScreen.playerScore, mNameScreen.playerInitals);
+    currentState =  mHighScoreScreen.mdraw(mGameplayScreen.addToHighScoreList, mGameplayScreen.playerScore, mNameScreen.playerInitals);
     break;
 
   default:
   }
-  soloNode.update();
-  soloNode.display();
-  soloNode.checkBoundaryCollision();
+
+
+  //if (mouseX > soloNode.position.x-soloNode.radiusInt && mouseX < soloNode.position.x+soloNode.radiusInt && mouseY > soloNode.position.y-soloNode.radiusInt && mouseY < soloNode.position.y+soloNode.radiusInt ) {
+  //  if (mousePressed) {
+  //    timeLetGoNode1 = MAX_INT;
+  //    soloNode.position.x = mouseX;
+  //    soloNode.position.y = mouseY;
+  //    soloNode.velocity.x = 0;
+  //    soloNode.velocity.y = 0;
+  //    soloNode.heldByMouse = true;
+  //  }
+  //}
+  //if ((millis()-timeLetGoNode1) > 5000) {
+  //  soloNode.velocity.x = random(-5, 5);
+  //  soloNode.velocity.y = random(-5, 5);
+  //  timeLetGoNode1=MAX_INT;
+  //}
+  //if (mouseX > soloNode2.position.x-soloNode2.radiusInt && mouseX < soloNode2.position.x+soloNode2.radiusInt && mouseY > soloNode2.position.y-soloNode2.radiusInt && mouseY < soloNode2.position.y+soloNode2.radiusInt ) {
+  //  if (mousePressed) {
+  //    timeLetGoNode2 = MAX_INT;
+  //    soloNode2.position.x = mouseX;
+  //    soloNode2.position.y = mouseY;
+  //    soloNode2.velocity.x = 0;
+  //    soloNode2.velocity.y = 0;
+  //    soloNode2.heldByMouse = true;
+  //  }
+  //}
+
+
+
+  // Both under circle?
+  //if (mouseX+150 > soloNode2.position.x+(soloNode2.radiusInt) && mouseX-150 < soloNode2.position.x-(soloNode2.radiusInt) && mouseY+150 > soloNode2.position.y+(soloNode2.radiusInt) && mouseY-150 < soloNode2.position.y-(soloNode2.radiusInt) && 
+  //  (mouseX+150 > soloNode.position.x+(soloNode.radiusInt) && mouseX-150 < soloNode.position.x-(soloNode.radiusInt) && mouseY+150 > soloNode.position.y+(soloNode.radiusInt) && mouseY-150 < soloNode.position.y-(soloNode.radiusInt) )) {
+  //  if (mousePressed) {
+  //    soloNode = new Node(mouseX, mouseY, Node.sizeNodeM, 125, 0, 0, "0.7v", "A");
+  //    soloNode.velocity.x = random(-5, 5);
+  //    soloNode.velocity.y = random(-5, 5);
+  //    soloNode2 = new Node(mouseX-Node.sizeNodeXL, mouseY-Node.sizeNodeXL, Node.sizeNodeM, 125, 0, 0, "0.7v", "A");
+  //    soloNode2.velocity.x = random(-5, 5);
+  //    soloNode2.velocity.y = random(-5, 5);
+  //  }
+  //}
+
+
+  //if ((millis()-timeLetGoNode2) > 5000) {
+  //  soloNode2.velocity.x = random(-5, 5);
+  //  soloNode2.velocity.y = random(-5, 5);
+  //  timeLetGoNode2=MAX_INT;
+  //}
 }
 
-void keyPressed() {
+public void mouseReleased() {
+  //if (currentState == GameStateENUM.GAMEPLAY) {
+
+  //if (soloNode.heldByMouse) {
+  //  timeLetGoNode1 = millis();
+  //  soloNode.heldByMouse = false;
+  //}
+
+  //if (soloNode2.heldByMouse) {
+  //  timeLetGoNode2 = millis();
+  //  soloNode2.heldByMouse = false;
+  //}
+  //}
+}
+
+
+public void keyPressed() {
 
   if (currentState == GameStateENUM.LEVELSELECT) {
     if (keyCode == ENTER || keyCode == RIGHT) {

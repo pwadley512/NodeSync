@@ -8,28 +8,20 @@
 public class MainMenuScreen {
 
   public MainMenuScreen() {
-    
-  }
-
-  void redrawBackground() {
-    //noStroke();
-    // fill(255, 255, 255); // Black
-    // rect(0, 0, dispWidth, dispHeight); // Black Border
-    fill(255, 255, 255); // White
-    rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
   }
 
   GameStateENUM mdraw() {
-    redrawBackground();
 
     fill(0, 0, 0); // Black
-
+    
     textSize(100);
     text("NodeSync", 180, 140);
     textSize(35);
     text("Eric Born & Peter James", 250, 700);
     textSize(20);
-    text("X: " + mouseX + " Y: " + mouseY, mouseX, mouseY);
+
+    // text("X: " + mouseX + " Y: " + mouseY, mouseX, mouseY);
+
     text("ENCM 507 - Winter 2017", 300, 740);
     textSize(50);
 

@@ -6,11 +6,11 @@
 public enum GameStateENUM {
     LOGO, 
     MAINMENU, 
-    NAME,
+    NAME, 
     INSTRUCTIONS, 
-    LEVELSELECT,
+    LEVELSELECT, 
     COUNTDOWNTOGAME, 
-    GAMEPLAY,
-    GAMEPLAYPAUSED,
+    GAMEPLAY, 
+    GAMEPLAYPAUSED, 
     HIGHSCORE,
 }

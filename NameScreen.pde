@@ -9,30 +9,22 @@ public class NameScreen {
   public NameScreen() {
   }
 
-  void redrawBackground() {
-    //fill(0, 0, 0); // Black
-    //rect(0, 0, dispWidth, dispHeight); // Black Border
-    fill(255, 255, 255); // White
-    rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
-  }
-
   GameStateENUM mdraw() {
-    redrawBackground();
     fill(0, 0, 0); // Black
     textSize(50);
 
-if (playerInitals.length()==3){
-    if (mouseX>560 && mouseX <738 && mouseY>743-100 && mouseY <802+10-100) {
-      fill(0, 255, 0);
-      text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) -100+370 - 10 + random(-1, 1));
-      fill(0, 0, 0); 
-      if (mousePressed) {
-        return GameStateENUM.INSTRUCTIONS;
+    if (playerInitals.length()==3) {
+      if (mouseX>560 && mouseX <738 && mouseY>743-100 && mouseY <802+10-100) {
+        fill(0, 255, 0);
+        text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) -100+370 - 10 + random(-1, 1));
+        fill(0, 0, 0); 
+        if (mousePressed) {
+          return GameStateENUM.INSTRUCTIONS;
+        }
+      } else {
+        text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) +370-100 - 10 + random(-1, 1));
       }
-    } else {
-      text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) +370-100 - 10 + random(-1, 1));
     }
-}
 
     if (mouseX>114 && mouseX <301 && mouseY>741-100 && mouseY <793-100) {
       fill(255, 0, 0);

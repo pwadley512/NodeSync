@@ -4,21 +4,12 @@
 // By: Eric Born & Peter Wadley
 
 
-
 public class PauseScreen {
 
   public PauseScreen() {
   }
 
-  void redrawBackground() {
-    //fill(0, 0, 0); // Black
-    //rect(0, 0, dispWidth, dispHeight); // Black Border
-    fill(255, 255, 255); // White
-    rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
-  }
-
   GameStateENUM mdraw() {
-    //redrawBackground();
     fill(0, 0, 0);
     textSize(100);
     text( "PAUSE", 270, 300);
