@@ -16,25 +16,25 @@ public class NameScreen {
     if (playerInitals.length()==3) {
       if (mouseX>560 && mouseX <738 && mouseY>743-100 && mouseY <802+10-100) {
         fill(0, 255, 0);
-        text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) -100+370 - 10 + random(-1, 1));
+        text("Next >", (gameArenaWidth/2) + 180 + random(-1, 1)-30, (gameArenaHeight/2) -100+370 - 10 + random(-1, 1));
         fill(0, 0, 0); 
         if (mousePressed) {
           return GameStateENUM.INSTRUCTIONS;
         }
       } else {
-        text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) +370-100 - 10 + random(-1, 1));
+        text("Next >", (gameArenaWidth/2) + 180 + random(-1, 1)-30, (gameArenaHeight/2) +370-100 - 10 + random(-1, 1));
       }
     }
 
     if (mouseX>114 && mouseX <301 && mouseY>741-100 && mouseY <793-100) {
       fill(255, 0, 0);
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363-100 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363-100 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         return GameStateENUM.MAINMENU;
       }
     } else {
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363-100 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363-100 + random(-1, 1));
     }
 
     fill(0, 0, 0); // Black

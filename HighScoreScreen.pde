@@ -3,6 +3,7 @@
 // Alpha Test Code
 // By: Eric Born & Peter Wadley
 
+// Add CSV File write and read to persist past players on the List
 public class HighScoreScreen {
 
   public HighScoreScreen() {

@@ -17,6 +17,6 @@ public enum colorENUM {
 }
 
 public final float sizeNode_1 = 30;
-public final float sizeNode_2 = 60;
-public final float sizeNode_3 = 120;
-public final float sizeNode_4 = 240;
+public final float sizeNode_2 = 50;
+public final float sizeNode_3 = 70;
+public final float sizeNode_4 = 90;

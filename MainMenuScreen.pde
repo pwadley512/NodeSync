@@ -27,24 +27,24 @@ public class MainMenuScreen {
 
     if (mouseX>348 && mouseX <471 && mouseY>378-70 && mouseY <414+10-70) {
       fill(0, 255, 0);
-      text("Start", (dispWidth/2) - 40 + random(-1, 1)-30, (dispHeight/2)-70 - 10 + random(-1, 1));
+      text("Start", (gameArenaWidth/2) - 40 + random(-1, 1)-30, (gameArenaHeight/2)-70 - 10 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         return GameStateENUM.NAME;
       }
     } else {
-      text("Start", (dispWidth/2) - 40 + random(-1, 1)-30, (dispHeight/2) - 10 -70 + random(-1, 1));
+      text("Start", (gameArenaWidth/2) - 40 + random(-1, 1)-30, (gameArenaHeight/2) - 10 -70 + random(-1, 1));
     }
 
     if (mouseX>348 && mouseX <471 && mouseY>378+50 && mouseY <414+80) {
       fill(255, 0, 0);
-      text("Quit", (dispWidth/2) - 40 + random(-1, 1)-30, (dispHeight/2) + 50 + random(-1, 1));
+      text("Quit", (gameArenaWidth/2) - 40 + random(-1, 1)-30, (gameArenaHeight/2) + 50 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         exit();
       }
     } else {
-      text("Quit", (dispWidth/2) - 40 + random(-1, 1)-30, (dispHeight/2) + 50 + random(-1, 1));
+      text("Quit", (gameArenaWidth/2) - 40 + random(-1, 1)-30, (gameArenaHeight/2) + 50 + random(-1, 1));
     }
     return GameStateENUM.MAINMENU;
   }

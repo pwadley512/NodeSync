@@ -66,13 +66,13 @@ public class LevelSelectScreen {
 
     if (mouseX>114 && mouseX <301 && mouseY>741-100 && mouseY <793-100) {
       fill(255, 0, 0);
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363-100 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363-100 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         return GameStateENUM.INSTRUCTIONS;
       }
     } else {
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363-100 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363-100 + random(-1, 1));
     }
 
 

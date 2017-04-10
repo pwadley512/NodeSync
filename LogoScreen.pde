@@ -20,8 +20,7 @@ public class LogoScreen {
 
   PImage img;
 
-  public LogoScreen(int showDelay) {
-    this.showDelay = showDelay;
+  public LogoScreen() {
   }
 
   GameStateENUM mdraw(int EngineTimer) {

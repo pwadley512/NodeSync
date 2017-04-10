@@ -29,24 +29,24 @@ public class InstructionScreen {
 
     if (mouseX>560 && mouseX <738 && mouseY>743 && mouseY <802+10) {
       fill(0, 255, 0);
-      text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) +370 - 10 + random(-1, 1));
+      text("Next >", (gameArenaWidth/2) + 180 + random(-1, 1)-30, (gameArenaHeight/2) +370 - 10 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         return GameStateENUM.LEVELSELECT;
       }
     } else {
-      text("Next >", (dispWidth/2) + 180 + random(-1, 1)-30, (dispHeight/2) +370 - 10 + random(-1, 1));
+      text("Next >", (gameArenaWidth/2) + 180 + random(-1, 1)-30, (gameArenaHeight/2) +370 - 10 + random(-1, 1));
     }
 
     if (mouseX>114 && mouseX <301 && mouseY>741 && mouseY <793) {
       fill(255, 0, 0);
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363 + random(-1, 1));
       fill(0, 0, 0); 
       if (mousePressed) {
         return GameStateENUM.NAME;
       }
     } else {
-      text("< Back", (dispWidth/2) - 270 + random(-1, 1)-30, (dispHeight/2) + 363 + random(-1, 1));
+      text("< Back", (gameArenaWidth/2) - 270 + random(-1, 1)-30, (gameArenaHeight/2) + 363 + random(-1, 1));
     }
 
     return GameStateENUM.INSTRUCTIONS;

@@ -3,9 +3,12 @@
 // Alpha Test Code
 // By: Eric Born & Peter Wadley
 // Screen Size
-int dispWidth = 850;
-int dispHeight = 850;
-
+public int gameArenaWidthStart = 20;
+public int gameArenaHeightStart = 90;
+public int gameArenaWidth = 800;
+public int gameArenaHeight = 800;
+public int screenWidth = width;
+public int screenHeight = height;
 
 int EngineTimer = 0;
 // State Variables
@@ -21,10 +24,10 @@ PauseScreen mPauseScreen;
 HighScoreScreen mHighScoreScreen;
 
 // Game arena Variables
-int topWallY = 10;
-int bottomWallY = dispHeight-20;
-int leftWallX = 10;
-int rightWallX = dispWidth-20;
+int topWallY = gameArenaWidthStart;
+int bottomWallY = gameArenaHeight;
+int leftWallX = gameArenaHeightStart;
+int rightWallX = gameArenaWidth;
 
 // Listener Variables
 
@@ -36,17 +39,19 @@ int timeLetGoNode2 = MAX_INT;
 
 void setup()
 {
-  size(850, 850);
+  size(1200, 920); // w,h
   //fullScreen();
   // smooth();
   frameRate(200);
   EngineTimer = millis();
   InitHelperObject();
+  screenWidth = width;
+  screenHeight = height;
 }
 
 void InitHelperObject() {
-  currentState = GameStateENUM.LOGO;
-  mLogoScreen = new LogoScreen(1000);
+  currentState = GameStateENUM.GAMEPLAY;
+  mLogoScreen = new LogoScreen();
   mMainMenuScreen = new MainMenuScreen();
   mNameScreen = new NameScreen();
   mInstructionScreen = new InstructionScreen();
@@ -60,16 +65,16 @@ void InitHelperObject() {
 void draw()
 {
   // Refresh Background
-  fill(0, 0, 0); // Black
-  rect(0, 0, dispWidth, dispHeight); // Black Border
-  fill(255, 255, 255); // White
-  rect(0, 0, dispWidth, dispHeight); // Playing Field Colour
-  fill(0, 0, 0); // Black
-  // Refresh Background
-  
+  background(30,30,30);
+  noFill();
+  strokeWeight(0);
+  fill(127, 127, 127);
+  rect(gameArenaWidthStart, gameArenaHeightStart, gameArenaWidth, gameArenaHeight); // Black Border
+  fill(0);
+  stroke(0);
   switch(currentState) {
   case LOGO:
-    currentState =  mLogoScreen.mdraw(600);
+    currentState =  mLogoScreen.mdraw(100);
     break; 
   case MAINMENU:
     currentState = mMainMenuScreen.mdraw();

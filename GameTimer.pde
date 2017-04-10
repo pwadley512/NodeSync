@@ -16,18 +16,19 @@ public class GameTimer {
     if (climit== -1) {
       climit = 1;
     }
-    textSize(60);
+    fill (127,127,127);
+    textSize(30);
     c = climit*60*1000 - millis();
     cmin = (c/(60*1000));
     csec = (c/(1000));
 
     int mins = csec / 60;
     csec = csec - mins * 60;
-    if (mins == 0 && csec <=30) {
-      fill(255, 0, 0);
-    } else {
-      fill(0, 0, 0); // Black
-    }
+    //if (mins == 0 && csec <=30) {
+    //  fill(255, 0, 0);
+    //} else {
+    //  fill(0, 0, 0); // Black
+    //}
 
     if (csec<10) {
       text(cmin+":0"+(csec), 500, 75);

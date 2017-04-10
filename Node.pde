@@ -16,13 +16,13 @@ public class Node {
 
 
   Node(float x, float y, float r_, float Red, float Green, float Blue, String voltageLabel, String nodeID) {
-    position = new PVector(x, y);
-    velocity = PVector.random2D();
-    velocity.mult(1);
-    radius = r_;
-    r = radius;
-    mass = radius*.1;
-    m = mass;
+    this.position = new PVector(x, y);
+    this.velocity = PVector.random2D();
+    this.velocity.mult(1);
+    this.radius = r_;
+    this.r = radius;
+    this.mass = radius*.1;
+    this.m = mass;
     this.Red = Red;
     this.Green = Green;
     this.Blue = Blue;
@@ -31,22 +31,21 @@ public class Node {
   }
 
   void update() {
-
     position.add(velocity);
   }
 
   void checkBoundaryCollision() {
-    if (position.x > width-r) {
-      position.x = width-r;
+    if (position.x > (gameArenaWidth+gameArenaWidthStart-r)) { // right wall
+      position.x = (gameArenaWidth+gameArenaWidthStart-r);
       velocity.x *= -1;
-    } else if (position.x < r) {
-      position.x = r;
+    } else if (position.x < (gameArenaWidthStart+r)) { // left wall
+      position.x = gameArenaWidthStart+r;
       velocity.x *= -1;
-    } else if (position.y > height-r) {
-      position.y = height-r;
+    } else if (position.y > (gameArenaHeightStart+gameArenaHeight)-r) { // bottom wall
+      position.y = (gameArenaHeightStart+gameArenaHeight)-r;
       velocity.y *= -1;
-    } else if (position.y < r) {
-      position.y = r;
+    } else if (position.y < (gameArenaHeightStart+r)) { // top wall
+      position.y = (gameArenaHeightStart+r);
       velocity.y *= -1;
     }
   }
@@ -139,7 +138,7 @@ public class Node {
 
 
   void display() {
-    strokeWeight(9);
+    strokeWeight(2);
     stroke(0, 0, 0);
     fill(127, 0, 0);
     arc(position.x, position.y, r*2, r*2, -HALF_PI, HALF_PI);
