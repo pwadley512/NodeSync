@@ -138,12 +138,37 @@ public class Node {
 
 
   void display() {
-    strokeWeight(2);
+    strokeWeight(4);
     stroke(0, 0, 0);
-    fill(127, 0, 0);
-    arc(position.x, position.y, r*2, r*2, -HALF_PI, HALF_PI);
-    fill(0, 127, 0); 
-    arc(position.x, position.y, r*2, r*2, -3*PI/2, -HALF_PI);
+    //fill(127, 0, 0);
+    //arc(position.x, position.y, r*2, r*2, -HALF_PI, HALF_PI);
+    //fill(0, 127, 0); 
+    //arc(position.x, position.y, r*2, r*2, -3*PI/2, -HALF_PI);
+
+
+    // Top
+    fill(255);
+    arc(position.x, position.y, r*2, r*2, -PI, -PI*2/3);
+    fill(0); 
+    arc(position.x, position.y, r*2, r*2, -PI*2/3, -PI*1/3);
+    fill(255);
+    arc(position.x, position.y, r*2, r*2, -PI*1/3, 0);
+    // Bottom
+    fill(0);
+    arc(position.x, position.y, r*2, r*2, PI*2/3, PI);
+    fill(255); 
+    arc(position.x, position.y, r*2, r*2, PI*1/3, PI*2/3 );
+    fill(0);
+    arc(position.x, position.y, r*2, r*2, 0, PI*1/3);
+
+
+    fill(255); 
+    //arc(position.x, position.y, r*2, r*2, (6/5)*PI, (8/5)*PI);
+    fill(255);
+    //arc(position.x, position.y, r*2, r*2, (8/5)*PI, 2*PI);
+
+
+
 
     // Show Node Label (A,B etc)
     //switch(this.radiusInt) {

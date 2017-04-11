@@ -3,9 +3,12 @@
 // Alpha Test Code
 // By: Eric Born & Peter Wadley
 // Screen Size
+public static long buttonBuffer;
+public static long buttonBufferDelay = 500;
+public static levelENUM levelState = levelENUM.LEVEL1;
 public int gameArenaWidthStart = 20;
 public int gameArenaHeightStart = 90;
-public int gameArenaWidth = 800;
+public int gameArenaWidth = 1200;
 public int gameArenaHeight = 800;
 public int screenWidth = width;
 public int screenHeight = height;
@@ -39,66 +42,83 @@ int timeLetGoNode2 = MAX_INT;
 
 void setup()
 {
-  size(1200, 920); // w,h
-  //fullScreen();
+  // size(1200, 920); // w,h1200,920
+  fullScreen();
   // smooth();
   frameRate(200);
   EngineTimer = millis();
   InitHelperObject();
   screenWidth = width;
   screenHeight = height;
+  buttonBuffer = millis();
 }
 
 void InitHelperObject() {
-  currentState = GameStateENUM.GAMEPLAY;
-  mLogoScreen = new LogoScreen();
+  currentState = GameStateENUM.LOGO;
+  mLogoScreen = new LogoScreen(1);
   mMainMenuScreen = new MainMenuScreen();
   mNameScreen = new NameScreen();
   mInstructionScreen = new InstructionScreen();
   mLevelSelectScreen = new LevelSelectScreen();
   mCountDownToGame = new CountDownToGame();
-  mGameplayScreen = new GameplayScreen();
   mPauseScreen = new PauseScreen();
   mHighScoreScreen = new HighScoreScreen();
+  cursor(HAND);
+}
+// Refresh Background
+void greyBackground() {
+  background(30, 30, 30);
 }
 
+void whiteBackground() {
+  background(255);
+}
 void draw()
 {
-  // Refresh Background
-  background(30,30,30);
-  noFill();
-  strokeWeight(0);
-  fill(127, 127, 127);
-  rect(gameArenaWidthStart, gameArenaHeightStart, gameArenaWidth, gameArenaHeight); // Black Border
-  fill(0);
-  stroke(0);
+
   switch(currentState) {
   case LOGO:
-    currentState =  mLogoScreen.mdraw(100);
+    whiteBackground();
+    currentState =  mLogoScreen.mdraw(EngineTimer);
     break; 
   case MAINMENU:
+    greyBackground();
     currentState = mMainMenuScreen.mdraw();
     break;
   case NAME:
+    greyBackground();
     currentState = mNameScreen.mdraw();
     break;
   case INSTRUCTIONS:
+    greyBackground();
     currentState = mInstructionScreen.mdraw();
     break;
   case LEVELSELECT:
+    greyBackground();
     currentState = mLevelSelectScreen.mdraw();
     break;
   case COUNTDOWNTOGAME:
+    greyBackground();
     currentState = mCountDownToGame.mdraw();
-    //mGameplayScreen.cmin = 2;
+    if (currentState == GameStateENUM.GAMEPLAY) {
+      mGameplayScreen = new GameplayScreen();
+    noCursor();
+    // MUST KEEP MOUSE BOUND TO BOX - RADIUS GRABBER
+  }
     break;
   case GAMEPLAY:
+    greyBackground();
+    fill(127, 127, 127);
+    rect(gameArenaWidthStart, gameArenaHeightStart, gameArenaWidth, gameArenaHeight); // Arena Border
     currentState = mGameplayScreen.mdraw();
+
     break;
   case GAMEPLAYPAUSED:
+    greyBackground();
     mPauseScreen.mdraw();
     break;
   case HIGHSCORE:
+    cursor(HAND);
     if (mGameplayScreen.addToHighScoreList) {
     }
     currentState =  mHighScoreScreen.mdraw(mGameplayScreen.addToHighScoreList, mGameplayScreen.playerScore, mNameScreen.playerInitals);
@@ -207,13 +227,32 @@ public void keyPressed() {
     }
   } else if (currentState == GameStateENUM.GAMEPLAY) {
     if (key == ' ' ) {
-      // must tell gameplay to stop timer and stuff
+      // must tell gameplay to stop timer and movement
       currentState = GameStateENUM.GAMEPLAYPAUSED;
     }
   } else if (currentState == GameStateENUM.GAMEPLAYPAUSED) {
     if (key == ' ' ) {
-      // must tell gameplay to stop timer and stuff
+      // must tell gameplay to start timer
       currentState = GameStateENUM.GAMEPLAY;
     }
+  }
+}
+
+boolean overRect(int x, int y, int width, int height)  {
+  if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overCircle(int x, int y, int diameter) {
+  float disX = x - mouseX;
+  float disY = y - mouseY;
+  if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+    return true;
+  } else {
+    return false;
   }
 }

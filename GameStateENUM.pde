@@ -14,3 +14,10 @@ public enum GameStateENUM {
     GAMEPLAYPAUSED, 
     HIGHSCORE,
 }
+
+public enum levelENUM {
+LEVEL1,
+LEVEL2,
+LEVEL3,
+LEVEL4
+}

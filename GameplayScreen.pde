@@ -5,16 +5,13 @@
 
 
 public class GameplayScreen {
-  public int secondsTime = 59;
-  public int minutesTime = 2;
-  public int mouseTimeLeft = 200;
 
   public Boolean addToHighScoreList = false;
   public int minScoreHighScoreList = 0;
   public  int playerScore = 10000;
   public  int minClusterSize = 2;
-
-  GameTimer mGameTimer;
+  public long gameSecondsTotal= 90;
+  public long elapsedSeconds= 0;
 
   Node[] nodeSetLevelOne = {
     new Node(200, 100, sizeNode_1, 125, 0, 0, "0.7v", "A"), 
@@ -32,13 +29,19 @@ public class GameplayScreen {
   Node[] nodeSetLevelFour = {
   };
 
-
+  public long timeStartGame;
   public GameplayScreen() {
-    mGameTimer = new GameTimer();
+    timeStartGame = (long)((System.currentTimeMillis()/1000)%3600);
   }
 
   // Main Gameplay Logic Here
   GameStateENUM mdraw() {
+    long timeNow = (long)((System.currentTimeMillis()/1000)%3600);
+    elapsedSeconds = (3600 + timeNow - timeStartGame)%3600;
+
+    text((gameSecondsTotal-elapsedSeconds), 500, 75);
+
+
     RenderScoreText();
     RenderPriorityQueue();
     RenderNodes();
@@ -124,12 +127,13 @@ public class GameplayScreen {
   }
 
   GameStateENUM CheckTimeLeft() {
-    // Check time.. go to High Score Screen if out of time
-    if ( mGameTimer.tickTimer() == GameStateENUM.HIGHSCORE) {
-      addToHighScoreList = true; // if score > min score list
-      return GameStateENUM.HIGHSCORE;
-    } else {
-      return GameStateENUM.GAMEPLAY;
-    }
+    //if (mGameTimer == null)    mGameTimer = new GameTimer();
+    //// Check time.. go to High Score Screen if out of time
+    //if ( mGameTimer.tickTimer() == GameStateENUM.HIGHSCORE) {
+    //  addToHighScoreList = true; // if score > min score list
+    //  return GameStateENUM.HIGHSCORE;
+    //} else {
+    return GameStateENUM.GAMEPLAY;
+    //}
   }
 }
